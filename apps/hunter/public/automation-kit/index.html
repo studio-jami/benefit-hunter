@@ -40,6 +40,7 @@
   ol li { margin-bottom: 8px; }
   code { background: var(--surface); border: 1px solid var(--line); border-radius: 3px; padding: 1px 5px; font-size: 12px; }
   .btn { display: inline-block; margin-top: 4px; background: var(--neutral-action); color: #080807; font-weight: 700; text-decoration: none; padding: 8px 16px; border-radius: 3px; font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; }
+  .btn-outline { background: transparent; color: var(--text-dim); border: 1px solid var(--line); }
   footer { margin-top: 48px; font-size: 11px; color: var(--text-dim2); }
   footer a { color: var(--text-dim); }
 </style>
@@ -60,9 +61,13 @@
     control. Nothing is sent to Jami Studio or any third party — we never see your
     email, your Sheet, or your key.
   </p>
-  <a class="btn" href="https://github.com/studio-jami/benefit-hunter/blob/main/docs/product/automation-kit-guide.md" target="_blank" rel="noopener noreferrer">Full setup guide ↗</a>
+  <p style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
+    <a class="btn" href="./benefits-registry-auto-updater.zip" download>Download kit (.zip) ⤓</a>
+    <a class="btn btn-outline" href="https://github.com/studio-jami/benefit-hunter/blob/main/docs/product/automation-kit-guide.md" target="_blank" rel="noopener noreferrer">Full setup guide ↗</a>
+  </p>
 
   <h2>Files in this kit</h2>
+  <p style="margin-top:-6px;">Included in the zip above. Individual files below are for viewing the source — your browser may download them as plain text rather than display them inline.</p>
   <ul class="files">
     <li><a href="./appsscript.json">appsscript.json</a><span>manifest: time zone, OAuth scopes</span></li>
     <li><a href="./Code.gs">Code.gs</a><span>config, entrypoints, trigger installer, main sync loop, Sheet menu</span></li>
@@ -77,6 +82,7 @@
 
   <h2>Quick start</h2>
   <ol>
+    <li>Download and unzip <code>benefits-registry-auto-updater.zip</code> above.</li>
     <li>Create (or open) a Google Sheet. Add a tab named <code>Registry</code> (or change <code>CONFIG.REGISTRY_TAB</code> in <code>Code.gs</code>).</li>
     <li>In the Sheet: <strong>Extensions &gt; Apps Script</strong>. Delete the default code.</li>
     <li>Create each file listed above and paste in the matching content (open <code>appsscript.json</code> via the gear icon &gt; "Show manifest file").</li>

@@ -378,6 +378,15 @@ export default function App() {
               fontFamily:"monospace", letterSpacing:"0.06em", textTransform:"uppercase", lineHeight:1,
               display:"inline-flex", alignItems:"center", justifyContent:"center", minHeight:28, minWidth:28,
             }}>{viewMode === "by_vendor" ? "▦" : "▤"}</button>
+            <a href="/automation-kit/" target="_blank" rel="noopener noreferrer"
+              title="Optional add-on: auto-update your own benefits tracking Sheet from Gmail using your own Gemini key. Runs entirely in your Google account." style={{
+              background: "transparent",
+              border:"1px solid var(--line)",
+              color:"var(--text-dim)",
+              borderRadius:3, padding:"5px 10px", cursor:"pointer", fontSize:10,
+              fontFamily:"monospace", letterSpacing:"0.06em", textTransform:"uppercase", fontWeight:700,
+              display:"inline-flex", alignItems:"center", gap:5, minHeight:28, textDecoration:"none",
+            }}>⚙<span className="btn-for-me-text">Kit</span></a>
             <div style={{ position:"relative" }}>
               <button onClick={() => setProfileMenuOpen(o => !o)} title={signedInUser ? "Account" : "Profile"} style={{
                 background: profileMenuOpen ? "var(--line-soft)" : "transparent",
@@ -747,14 +756,6 @@ export default function App() {
       }}>
         <span>BENEFIT HUNTER v5 // {PROGRAMS.length} BENEFITS // {VENDOR_COUNT} VENDORS</span>
         <span style={{ display:"flex", gap:14, alignItems:"center" }}>
-          <a
-            href="/automation-kit/"
-            target="_blank" rel="noopener noreferrer"
-            style={{ color:"var(--line)", textDecoration:"none" }}
-            title="Optional add-on: auto-update your own benefits tracking Sheet from Gmail using your own Gemini key. Runs entirely in your Google account."
-          >
-            Automation Kit (optional) ↗
-          </a>
           <span>cash-like ${(totalCashLikeT1/1000).toFixed(0)}k · counted ${(totalCountedT1/1000).toFixed(0)}k</span>
         </span>
       </div>
