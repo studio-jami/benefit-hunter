@@ -1,0 +1,24 @@
+# Private admin tree — never ships
+/_ops/programs/
+/_ops/marketing/
+
+# Env / secrets
+.env
+.env.*
+!.env.example
+**/.env
+**/.env.*
+!**/.env.example
+*.pem
+*.key
+.gcloud-keys/
+
+# Node / build
+node_modules/
+dist/
+.vercel/
+
+# OS / editor
+.DS_Store
+desktop.ini
+Thumbs.db

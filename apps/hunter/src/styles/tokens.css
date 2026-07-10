@@ -1,0 +1,61 @@
+/*
+ * Color tokens.
+ *
+ * - Semantic tokens (accent/gold/ok/wait/...) are theme-independent.
+ * - Surfaces (--bg, --surface, --line, etc.) are absolute per theme.
+ * - --neutral is the master that drives the text-shade family ONLY
+ *   (text / text-dim / text-dim2 / text-dim3) via relative OKLCH.
+ *   It does NOT drive surface colors — those would otherwise clamp to
+ *   pure black when neutral is mid-gray.
+ *
+ * Switch themes by setting `data-theme="light"` on the root element.
+ */
+:root {
+  /* === Semantic — theme-independent === */
+  --accent: oklch(0.78 0.16 75);
+  --gold:   oklch(0.83 0.17 85);
+  --match:  oklch(0.78 0.18 150);
+  --ok:     oklch(0.74 0.16 148);
+  --wait:   oklch(0.84 0.16 92);
+  --stop:   oklch(0.68 0.19 25);
+  --info:   oklch(0.72 0.13 250);
+
+  --cat-devops:     oklch(0.72 0.13 250);
+  --cat-multimedia: oklch(0.70 0.16 305);
+  --cat-research:   oklch(0.74 0.16 148);
+  --cat-business:   oklch(0.85 0.17 95);
+  --cat-tech:       oklch(0.70 0.17 25);
+  --cat-science:    oklch(0.78 0.12 195);
+
+  /* === Dark theme (default) === */
+  --neutral: oklch(0.58 0.005 280);
+
+  --bg:        #07070a;
+  --surface:   #0f0e0e;
+  --surface-2: #0a0a0a;
+  --line:      #1e1e1e;
+  --line-soft: #161616;
+
+  /* Text shades — derived from neutral, brighter on dark surfaces */
+  --text:      oklch(from var(--neutral) calc(l + 0.32) c h);
+  --text-dim:  var(--neutral);
+  --text-dim2: oklch(from var(--neutral) calc(l - 0.10) c h);
+  --text-dim3: oklch(from var(--neutral) calc(l - 0.22) c h);
+}
+
+/* === Light theme — warm, soft, low chroma off-white === */
+[data-theme="light"] {
+  --neutral: oklch(0.50 0.010 75);
+
+  --bg:        oklch(0.965 0.014 78);
+  --surface:   oklch(0.945 0.013 78);
+  --surface-2: oklch(0.915 0.012 78);
+  --line:      oklch(0.83  0.011 78);
+  --line-soft: oklch(0.88  0.011 78);
+
+  /* Text shades — derived from neutral, darker on light surfaces */
+  --text:      oklch(from var(--neutral) calc(l - 0.34) c h);
+  --text-dim:  var(--neutral);
+  --text-dim2: oklch(from var(--neutral) calc(l + 0.12) c h);
+  --text-dim3: oklch(from var(--neutral) calc(l + 0.22) c h);
+}

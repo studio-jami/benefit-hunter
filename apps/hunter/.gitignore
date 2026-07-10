@@ -1,0 +1,11 @@
+node_modules/
+dist/
+.vercel/
+.env
+.env.*
+!.env.example
+*.local
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*

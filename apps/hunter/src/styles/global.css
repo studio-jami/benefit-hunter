@@ -1,0 +1,165 @@
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;700&family=Bebas+Neue&display=swap");
+@import url("./tokens.css");
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+}
+
+::-webkit-scrollbar {
+  width: 3px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--surface-2);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--line);
+  border-radius: 2px;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 10px;
+}
+
+@media (max-width: 660px) {
+  .card-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.stats-strip {
+  display: flex;
+  gap: 22px;
+  align-items: center;
+  flex-wrap: nowrap;
+  padding-bottom: 14px;
+}
+.stats-divider {
+  width: 1px;
+  align-self: stretch;
+  background: var(--line-soft);
+  flex-shrink: 0;
+}
+.stats-more-toggle { display: none; }
+
+/* Desktop default — secondary stats inline, no toggle */
+.stats-secondary-group { display: contents; }
+.stats-toggle { display: none; }
+
+@media (max-width: 960px) {
+  .stats-strip { flex-wrap: wrap; overflow: visible; gap: 14px 18px; }
+  .stats-secondary-group { display: none; }
+  .stats-strip.expanded .stats-secondary-group {
+    display: flex;
+    flex-basis: 100%;
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 14px 18px;
+    align-items: center;
+    margin-top: 8px;
+    padding-top: 10px;
+    border-top: 1px solid var(--line-soft);
+  }
+  .stats-toggle { display: inline-flex; }
+}
+
+/* Header layout */
+.header-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: nowrap;
+  margin-bottom: 4px;
+}
+.header-title-block {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  flex: 1 1 auto;
+  min-width: 0;
+  flex-wrap: wrap;
+}
+.header-wordmark { font-size: 32px; line-height: 1; }
+.header-counter { white-space: nowrap; }
+.header-actions {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  flex-shrink: 0;
+  flex-wrap: nowrap;
+}
+.header-subtext { font-size: 9px; color: var(--text-dim3); margin-bottom: 16px; letter-spacing: 0.04em; }
+
+@media (max-width: 640px) {
+  .header-wordmark { font-size: 22px; }
+  .btn-for-me-text { display: none; }
+  .header-subtext {
+    font-size: 8px;
+    padding-bottom: 12px;
+    margin-bottom: 12px;
+    border-bottom: 1px solid var(--line-soft);
+  }
+  .header-subtext-sep { display: none; }
+  .header-subtext-line { display: block; }
+  .header-counter { font-size: 8px; }
+}
+
+/* Shell — caps page width so content never sprawls on ultra-wide displays */
+.shell {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+/* Filter row — CSS Grid, single column system shared across all breakpoints.
+ * Desktop (>960):  9 cols  → [F][F][F][F][F][F][Search span 2][Sort]
+ * Tablet  (≤960):  6 cols  → row 1 = 6 filters, row 2 = Search(span5) Sort(1)
+ * Mobile  (≤640):  3 cols  → 3 + 3 filters, then Search(span2) Sort(1)
+ *
+ * Sort + every filter share the same .filter-dd structure — sized identically
+ * by the grid columns. Search spans 2 cells on desktop so it reads as the
+ * primary input, not just another filter.
+ */
+.filter-row {
+  display: grid;
+  gap: 6px;
+  grid-template-columns: repeat(9, minmax(0, 1fr));
+  align-items: center;
+}
+.filter-row > .filter-dd > button {
+  width: 100%;
+}
+.filter-row > .filter-dd > button > :last-child {
+  margin-left: auto !important;
+}
+.filter-row > .filter-dd > button > :first-child {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.filter-row > input[type="text"] {
+  min-width: 0;
+  width: 100%;
+  grid-column: span 2;
+}
+
+@media (max-width: 960px) {
+  .filter-row { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+  .filter-row > input[type="text"] { grid-column: span 5; }
+}
+
+@media (max-width: 640px) {
+  .filter-row { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .filter-row > input[type="text"] { grid-column: span 2; }
+}
+
+select option {
+  background: var(--line-soft);
+}
