@@ -21,10 +21,10 @@ export const EXAMPLES = [
   { id: "aws-activate-founders",         programId: "aws-founders",       vendor: "AWS",        title: "AWS Activate Founders",         body: awsActivateFounders },
   { id: "anthropic-startups",            programId: "anthropic-startups", vendor: "Anthropic",  title: "Claude for Startups",           body: anthropicStartups },
   { id: "algolia-startups",              programId: "algolia-startups",   vendor: "Algolia",    title: "Algolia Startup Program",       body: algoliaStartups },
-  { id: "retool-startups",               programId: null,                 vendor: "Retool",     title: "Retool for Startups",           body: retoolStartups },
+  { id: "retool-startups",               programId: "retool-startups",   vendor: "Retool",     title: "Retool for Startups",           body: retoolStartups },
   { id: "snowflake-startup-accelerator", programId: null,                 vendor: "Snowflake",  title: "Snowflake Startup Accelerator", body: snowflakeAccelerator },
   { id: "vercel-startups",               programId: "vercel-startups",    vendor: "Vercel",     title: "Vercel for Startups",           body: vercelStartups },
-  { id: "make-startup-program",          programId: null,                 vendor: "Make",       title: "Make Startup Program",          body: makeStartupProgram },
+  { id: "make-startup-program",          programId: "make-startup",      vendor: "Make",       title: "Make Startup Program",          body: makeStartupProgram },
   { id: "elevenlabs-startup-grant",      programId: "elevenlabs-startup", vendor: "ElevenLabs", title: "ElevenLabs Startup Grants",     body: elevenlabsStartupGrant },
 ];
 
