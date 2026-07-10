@@ -122,7 +122,7 @@ export const REAL_AWARDS = [
     value: { label: "$50,000 credits", estimate: 50000, cashLike: true }, term: null,
     verificationStatus: "official", source: "active-credits-07-10-2026",
     notes: "Value per latest active-credits truth (supersedes older pipeline figure)." },
-  { vendor: "Reducto",      programId: "reducto-startups", lane: "Tech & AI",
+  { vendor: "Reducto",      programId: "reducto-startups", lane: "DevOps",
     value: { label: "$3,000 credits", estimate: 3000, cashLike: true }, term: null,
     verificationStatus: "official", source: "active-credits-07-10-2026", notes: "" },
   { vendor: "Oro (Tomorro)", programId: "oro-tomorro", lane: "Business",

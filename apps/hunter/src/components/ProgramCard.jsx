@@ -132,7 +132,7 @@ export function ProgramCard({ program, status, onStatusChange, profileMatch, onV
       <div style={{ display:"flex", gap:7, alignItems:"center", marginTop:"auto", paddingTop:4 }}>
         <a href={program.urls.apply} target="_blank" rel="noopener noreferrer" style={{
           fontSize:9, fontWeight:700, letterSpacing:"0.1em", textTransform:"uppercase",
-          color:"#080807", background:`var(--${laneTone})`,
+          color:"#080807", background:"var(--accent)",
           padding:"5px 11px", borderRadius:3, textDecoration:"none", flexShrink:0,
         }}>Apply →</a>
         {(() => {

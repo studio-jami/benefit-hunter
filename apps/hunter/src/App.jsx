@@ -13,7 +13,6 @@ import { MULTI_VENDORS, totalCashLikeT1, totalCountedT1, VENDOR_COUNT } from "./
 import { MultiSelectDropdown } from "./components/MultiSelectDropdown";
 import { SingleSelectDropdown } from "./components/SingleSelectDropdown";
 import { ProgramCard } from "./components/ProgramCard";
-import { GuidedView } from "./components/GuidedView";
 import { ProofView } from "./components/ProofView";
 import { Stat } from "./components/Stat";
 import { AccentsModal } from "./components/AccentsModal";
@@ -362,14 +361,6 @@ export default function App() {
               fontFamily:"monospace", letterSpacing:"0.06em", textTransform:"uppercase", fontWeight:700,
               display:"inline-flex", alignItems:"center", gap:5, minHeight:28,
             }}>★<span className="btn-for-me-text">For Me</span></button>
-            <button onClick={() => setViewMode(v => v === "guided" ? "grid" : "guided")} title="Guided plan: umbrella-first application order (T0 → T3)" style={{
-              background: viewMode === "guided" ? "color-mix(in oklch, var(--ok) 14%, transparent)" : "transparent",
-              border:"1px solid " + (viewMode === "guided" ? "color-mix(in oklch, var(--ok) 40%, transparent)" : "var(--line)"),
-              color: viewMode === "guided" ? "var(--ok)" : "var(--text-dim)",
-              borderRadius:3, padding:"5px 10px", cursor:"pointer", fontSize:10,
-              fontFamily:"monospace", letterSpacing:"0.06em", textTransform:"uppercase", fontWeight:700,
-              display:"inline-flex", alignItems:"center", gap:5, minHeight:28,
-            }}>▸<span className="btn-for-me-text">Plan</span></button>
             <button onClick={() => setViewMode(v => v === "proof" ? "grid" : "proof")} title="Real dollars secured, by stack lane" style={{
               background: viewMode === "proof" ? "color-mix(in oklch, var(--gold) 14%, transparent)" : "transparent",
               border:"1px solid " + (viewMode === "proof" ? "color-mix(in oklch, var(--gold) 40%, transparent)" : "var(--line)"),
@@ -655,15 +646,6 @@ export default function App() {
               />
             ))}
           </div>
-        ) : viewMode === "guided" ? (
-          <GuidedView
-            programs={filtered}
-            statuses={statuses}
-            onStatusChange={updateStatus}
-            profileMatchSet={profileMatchSet}
-            profileDoc={profileDoc}
-            onVendorClick={(v) => setSearch(v)}
-          />
         ) : (
           (() => {
             // Group filtered programs by vendor

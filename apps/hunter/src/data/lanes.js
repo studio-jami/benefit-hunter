@@ -1,5 +1,6 @@
-// Each category maps to its accent tone — used on the category chip
-// and the matching Apply button. Nowhere else.
+// Each category maps to its accent tone — used on the category chip only.
+// The Apply button is intentionally a single neutral color (var(--accent))
+// across all lanes, not lane-tinted.
 
 export const LANE_COLORS = {
   "DevOps":              { tone:"cat-devops"     },
