@@ -295,7 +295,7 @@ export default function App() {
     if (sortBy === "lane")     list.sort((a,b) => a.lane.localeCompare(b.lane) || b.value.estimate - a.value.estimate);
     if (sortBy === "tier")     list.sort((a,b) => a.tier - b.tier || b.value.estimate - a.value.estimate);
     if (sortBy === "agent")    list.sort((a,b) => {
-      const order = { submit:0, draft:1, research:2, stale:3 };
+      const order = { submit:0, direct:1, draft:2, stale:3 };
       return order[agentState(a).key] - order[agentState(b).key] || b.value.estimate - a.value.estimate;
     });
     if (sortBy === "match")    list.sort((a,b) => {
@@ -308,10 +308,10 @@ export default function App() {
 
   // Stats
   const stats = useMemo(() => {
-    const counts = { submit:0, draft:0, research:0, stale:0 };
+    const counts = { submit:0, draft:0, direct:0, stale:0 };
     PROGRAMS.forEach(p => counts[agentState(p).key]++);
     return {
-      submit: counts.submit, draft: counts.draft, research: counts.research,
+      submit: counts.submit, draft: counts.draft, direct: counts.direct,
       applied:  Object.values(statuses).filter(s => s === "applied").length,
       approved: Object.values(statuses).filter(s => s === "approved").length,
       interested: Object.values(statuses).filter(s => s === "agent_queued").length,
@@ -528,7 +528,7 @@ export default function App() {
           <span className="stats-secondary-group">
             <Stat label="Cash Value"      value={"$" + (Math.round(totalCashLikeT1/100000)/10).toFixed(1) + "m"} tone="gold" />
             <Stat label="Quick Draft"     value={stats.draft}      tone="wait"  />
-            <Stat label="Research"        value={stats.research}   tone="info"  />
+            <Stat label="Use Direct"      value={stats.direct}     tone="ok"    />
             <Stat label="Interested"      value={stats.interested} tone="ok"    />
             <Stat label="Applied"         value={stats.applied}    tone="info"  />
             <Stat label="Approved"        value={stats.approved}   tone="match" />
@@ -590,13 +590,13 @@ export default function App() {
         <MultiSelectDropdown
           label="States"
           total={PROGRAMS.length}
-          items={["submit","draft","research","stale"]}
+          items={["submit","draft","direct","stale"]}
           activeSet={stateFilters}
           onToggle={toggleInSet(setStateFilters)}
           onClear={clearSet(setStateFilters)}
-          getLabel={k => ({ submit:"Quick Apply", draft:"Quick Draft", research:"Research Only", stale:"Verify First" }[k])}
+          getLabel={k => ({ submit:"Quick Apply", draft:"Quick Draft", direct:"Use Direct", stale:"Verify First" }[k])}
           getCount={k => PROGRAMS.filter(p => agentState(p).key === k).length}
-          getTone={k => ({ submit:"ok", draft:"wait", research:"info", stale:"wait" }[k])}
+          getTone={k => ({ submit:"ok", draft:"wait", direct:"ok", stale:"wait" }[k])}
         />
         <MultiSelectDropdown
           label="Statuses"

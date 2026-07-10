@@ -1,30 +1,32 @@
-export function agentCanResearch(p) {
-  return !p.tags.includes("stale");
+// "Direct" — nothing to apply for at all (use, download, or call the API directly).
+export function agentIsDirect(p) {
+  return p.tags.includes("no_application");
 }
 
-export function agentCanDraft(p) {
+// "Submit" — fully self-serve: no partner/proposal/manual/card/KYC/legal gate.
+// The agent can both draft AND submit without a human-only step in the way.
+export function agentCanSubmit(p) {
   return p.tags.includes("easy_apply") &&
          !p.tags.includes("billing_risk") &&
-         !p.tags.includes("stale");
-}
-
-export function agentCanSubmit(p) {
-  return agentCanDraft(p) &&
          !p.tags.includes("human_review") &&
          !p.tags.includes("proposal_required") &&
          !p.tags.includes("partner_required") &&
          !p.tags.includes("manual_submit_only") &&
-         !p.tags.includes("no_application") &&
          !p.tags.includes("finance_kyc") &&
          !p.tags.includes("legal_entity_required") &&
          !p.tags.includes("requires_card");
 }
 
+// Every program has a real path: fully self-serve (submit), nothing to apply
+// for (direct), needs re-verification (stale), or the agent drafts the packet
+// and a human completes one gated step — partner referral, manual review,
+// a proposal, a card, KYC, or a legal entity (draft). There is no genuine
+// "research only, no path" bucket in this catalog, so none is modeled.
 export function agentState(p) {
-  if (agentCanSubmit(p))   return { key:"submit",   label:"Quick Apply",   tone:"ok"      };
-  if (agentCanDraft(p))    return { key:"draft",    label:"Quick Draft",   tone:"wait"    };
-  if (agentCanResearch(p)) return { key:"research", label:"Research Only", tone:"info"    };
-  return { key:"stale", label:"Verify First", tone:"wait" };
+  if (p.tags.includes("stale")) return { key:"stale",  label:"Verify First", tone:"wait" };
+  if (agentIsDirect(p))         return { key:"direct", label:"Use Direct",   tone:"ok"   };
+  if (agentCanSubmit(p))        return { key:"submit", label:"Quick Apply",  tone:"ok"   };
+  return                               { key:"draft",  label:"Quick Draft",  tone:"wait" };
 }
 
 // Derive the kind of work the agent (or human) needs to do.
