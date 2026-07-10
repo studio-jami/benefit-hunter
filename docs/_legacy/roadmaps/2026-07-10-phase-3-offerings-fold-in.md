@@ -1,7 +1,7 @@
 # Benefit Hunter Offerings Fold-In Implementation Plan
 
 Date: 2026-07-10
-Status: [ ] Planned
+Status: [x] Complete (2026-07-10)
 Source reports: `docs/product/setup-kit-and-guided-flow.md`, `docs/architecture/data-and-truth-model.md`
 Owner: Jami Studio
 Surface: `apps/hunter/src`, generated data artifacts, `_ops/programs/applications`, `_ops/programs/active-credits-*.md`
@@ -88,11 +88,11 @@ status.
 
 Depends on:
 
-- [ ] Phase 2 baseline live.
+- [x] Phase 2 baseline live.
 
 Enables:
 
-- [ ] Workstream 4 proof view.
+- [x] Workstream 4 proof view.
 
 Primary areas:
 
@@ -102,17 +102,21 @@ Primary areas:
 
 Implementation tasks:
 
-- [ ] Parse the latest `active-credits` file into structured records
+- [x] Parse the latest `active-credits` file into structured records
       (vendor, value, term, lane, source date).
-- [ ] Resolve value conflicts in favor of `active-credits` over older artifacts.
-- [ ] Assign `verificationStatus` (`official` for current-truth items;
+- [x] Resolve value conflicts in favor of `active-credits` over older artifacts.
+- [x] Assign `verificationStatus` (`official` for current-truth items;
       `unverified-claimed` for previously-tracked/claimed items not confirmed).
-- [ ] Map each record to a stack lane; extend `lanes.js` if needed.
-- [ ] Strip all codes/links/PII; commit the reviewed artifact.
+- [x] Map each record to a stack lane; extend `lanes.js` if needed. (Existing
+      lanes sufficed.)
+- [x] Strip all codes/links/PII; commit the reviewed artifact.
+      (Plan values verified against live vendor pricing pages on 2026-07-10;
+      custom-priced plans carry `estimate: null` and are excluded from totals
+      rather than guessed.)
 
 Exit criteria:
 
-- [ ] `realAwards.js` exists, is de-identified, and totals confirmed vs
+- [x] `realAwards.js` exists, is de-identified, and totals confirmed vs
       unverified-claimed correctly.
 
 Suggested verification:
@@ -125,7 +129,7 @@ Goal: De-identified, agent-pointable application archetypes.
 
 Depends on:
 
-- [ ] Phase 2 baseline live.
+- [x] Phase 2 baseline live.
 
 Primary areas:
 
@@ -136,16 +140,17 @@ Primary areas:
 
 Implementation tasks:
 
-- [ ] Select the strongest submissions to templatize first (umbrella + high-value
+- [x] Select the strongest submissions to templatize first (umbrella + high-value
       referral hubs: e.g. AWS Activate, Retool, Anthropic, Algolia, Snowflake, Vercel,
       Make, ElevenLabs).
-- [ ] Replace identifiers with profile-schema placeholders; strip all codes/links/IDs.
-- [ ] Add a "what this program wants" header and agent redraft instructions per file.
-- [ ] Key each example to its catalog program id.
+- [x] Replace identifiers with profile-schema placeholders; strip all codes/links/IDs.
+- [x] Add a "what this program wants" header and agent redraft instructions per file.
+- [x] Key each example to its catalog program id. (Retool/Snowflake/Make have no
+      catalog entry yet; keyed `programId: null` until added.)
 
 Exit criteria:
 
-- [ ] Each shipped example is de-identified, hydratable from the profile schema, and
+- [x] Each shipped example is de-identified, hydratable from the profile schema, and
       linked from its catalog program.
 
 Suggested verification:
@@ -158,7 +163,7 @@ Goal: Tiered, ordered application guidance over the existing catalog + profile.
 
 Depends on:
 
-- [ ] Workstream 2 (for per-program example links).
+- [x] Workstream 2 (for per-program example links).
 
 Primary areas:
 
@@ -168,15 +173,15 @@ Primary areas:
 
 Implementation tasks:
 
-- [ ] Add tier-ordering logic (T0 → T1 → T2 → T3) with an "apply now / apply after"
-      state from `dependencies` and referral tags.
-- [ ] Surface, per program: apply URL, required fields, profile readiness, example link.
-- [ ] Relabel readiness so `Submit Ready` reads as fill-and-review, not auto-submit.
-- [ ] Persist per-program status in local storage using the existing statuses model.
+- [x] Add tier-ordering logic (T0 → T1 → T2 → T3) with an "apply now / apply after"
+      state from `dependencies` and referral tags. (`src/lib/guidedFlow.js`)
+- [x] Surface, per program: apply URL, required fields, profile readiness, example link.
+- [x] Relabel readiness so `Submit Ready` reads as fill-and-review, not auto-submit.
+- [x] Persist per-program status in local storage using the existing statuses model.
 
 Exit criteria:
 
-- [ ] Users see a correct, ordered plan with readiness and example links; no backend.
+- [x] Users see a correct, ordered plan with readiness and example links; no backend.
 
 Suggested verification:
 
@@ -188,7 +193,7 @@ Goal: A proof page itemizing real awards by stack with honest totals.
 
 Depends on:
 
-- [ ] Workstream 1.
+- [x] Workstream 1.
 
 Primary areas:
 
@@ -197,14 +202,14 @@ Primary areas:
 
 Implementation tasks:
 
-- [ ] Group awards by stack lane; render confirmed and unverified-claimed separately.
-- [ ] Show confirmed total prominently and the unverified subtotal distinctly.
-- [ ] Show the sourcing `active-credits` date as freshness.
-- [ ] Link each award to its catalog program when one exists.
+- [x] Group awards by stack lane; render confirmed and unverified-claimed separately.
+- [x] Show confirmed total prominently and the unverified subtotal distinctly.
+- [x] Show the sourcing `active-credits` date as freshness.
+- [x] Link each award to its catalog program when one exists.
 
 Exit criteria:
 
-- [ ] The proof view renders grouped, labeled, dated, and totals reconcile.
+- [x] The proof view renders grouped, labeled, dated, and totals reconcile.
 
 ## Workstream 5: Tests, Docs, Closeout
 
@@ -212,9 +217,12 @@ Goal: Lock behavior and update durable docs.
 
 Implementation tasks:
 
-- [ ] Add the focused tests listed above.
-- [ ] Update `docs/` if any contract changed.
-- [ ] Update this roadmap's checkboxes; retire to `docs/_legacy/roadmaps/` when done.
+- [x] Add the focused tests listed above. (`apps/hunter/src/test/` — vitest, 28
+      tests: tier ordering, dependency gating, readiness mapping, placeholder
+      hydration, award grouping/totals, de-identification patterns.)
+- [x] Update `docs/` if any contract changed. (No contract changes; implementation
+      matches the product and data-truth docs.)
+- [x] Update this roadmap's checkboxes; retire to `docs/_legacy/roadmaps/` when done.
 
 ## Acceptance Criteria
 

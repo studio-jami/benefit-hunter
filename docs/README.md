@@ -30,7 +30,7 @@ The roadmaps sequence the work. Do not start a later phase before the earlier on
 acceptance criteria are met.
 
 1. **Phase 2 — Stand up & launch** ([retired roadmap](./_legacy/roadmaps/2026-07-10-phase-2-standup-and-launch.md), complete 2026-07-10): cut the public repo, dedupe/rebrand the Hunter app, ship the current app live at `benefits.jami.studio`.
-2. **Phase 3 — Fold in the offerings** ([roadmap](./roadmaps/2026-07-10-phase-3-offerings-fold-in.md)): setup kit, guided umbrella-first flow, templatized example library, real-dollars-by-stack view.
+2. **Phase 3 — Fold in the offerings** ([retired roadmap](./_legacy/roadmaps/2026-07-10-phase-3-offerings-fold-in.md), complete 2026-07-10): setup kit, guided umbrella-first flow, templatized example library, real-dollars-by-stack view.
 3. **Phase 4 — Automation kit v1.1** ([roadmap](./roadmaps/2026-07-10-phase-4-automation-kit-v1_1.md)): the self-serve Google Apps Script registry-sync add-on. Non-blocking; ships after core.
 
 (Phase 0 alignment and Phase 1 doc authoring are this doc set itself.)
