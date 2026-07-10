@@ -1,7 +1,7 @@
 # Benefit Hunter Repo Standup And Launch Implementation Plan
 
 Date: 2026-07-10
-Status: [ ] Active
+Status: [x] Complete (2026-07-10)
 Source reports: `docs/product/vision-and-scope.md`, `docs/architecture/repo-and-monorepo.md`, `docs/security/privacy-and-secrets.md`
 Owner: Jami Studio
 Surface: `C:\Users\james\orgs\oss\benefit-hunter`, GitHub `studio-jami`, Vercel Jami Studio team, `benefits.jami.studio`
@@ -88,11 +88,11 @@ Goal: Guarantee no secret or private material can enter git history.
 
 Depends on:
 
-- [ ] Nothing (do this first).
+- [x] Nothing (do this first).
 
 Enables:
 
-- [ ] Workstream 5 git initialization.
+- [x] Workstream 5 git initialization.
 
 Repo guidance:
 
@@ -105,15 +105,17 @@ Primary areas:
 
 Implementation tasks:
 
-- [ ] Relocate raw secret files out of `benefit-hunter/` to a non-repo location.
-- [ ] Author root `.gitignore` per `docs/security/privacy-and-secrets.md`.
-- [ ] Add a safe root `.env.example` (placeholders only) and confirm
+- [x] Relocate raw secret files out of `benefit-hunter/` to a non-repo location.
+      (Moved to `C:\Users\james\orgs\oss\_secrets\benefit-hunter-ops\`; pointer
+      note left at `_ops/programs/SECRETS-RELOCATED.md`.)
+- [x] Author root `.gitignore` per `docs/security/privacy-and-secrets.md`.
+- [x] Add a safe root `.env.example` (placeholders only) and confirm
       `apps/hunter/.env.example` is placeholder-only.
 
 Exit criteria:
 
-- [ ] No real `.env*` remains in the tree except `.env.example` files.
-- [ ] `_ops/` is fully covered by `.gitignore`.
+- [x] No real `.env*` remains in the tree except `.env.example` files.
+- [x] `_ops/` is fully covered by `.gitignore`.
 
 Suggested verification:
 
@@ -126,11 +128,11 @@ Goal: One canonical app at `apps/hunter`; remove archival/nested duplicates.
 
 Depends on:
 
-- [ ] Workstream 1.
+- [x] Workstream 1.
 
 Enables:
 
-- [ ] Workstream 3 rebrand, Workstream 5 git init.
+- [x] Workstream 3 rebrand, Workstream 5 git init.
 
 Primary areas:
 
@@ -140,15 +142,15 @@ Primary areas:
 
 Implementation tasks:
 
-- [ ] Rename `apps/web` to `apps/hunter`.
-- [ ] Remove `apps/hunter/.git` and `_ops/programs/hunter/.git`.
-- [ ] Move useful docs out of `_ops/programs/hunter/docs/` into `docs/reference/`
+- [x] Rename `apps/web` to `apps/hunter`.
+- [x] Remove `apps/hunter/.git` and `_ops/programs/hunter/.git`.
+- [x] Move useful docs out of `_ops/programs/hunter/docs/` into `docs/reference/`
       (research) and `docs/_legacy/roadmaps/` (dated plans), then remove the
       duplicate `_ops/programs/hunter/` app copy.
 
 Exit criteria:
 
-- [ ] Exactly one Hunter app exists, at `apps/hunter`, with no nested `.git`.
+- [x] Exactly one Hunter app exists, at `apps/hunter`, with no nested `.git`.
 
 Suggested verification:
 
@@ -161,7 +163,7 @@ Goal: Replace yrka identity in user-facing copy and config.
 
 Depends on:
 
-- [ ] Workstream 2.
+- [x] Workstream 2.
 
 Primary areas:
 
@@ -171,14 +173,14 @@ Primary areas:
 
 Implementation tasks:
 
-- [ ] Update page title, meta description, and any brand strings to Benefit Hunter.
-- [ ] Replace `hunter.yrka.io` and yrka funnel links with `benefits.jami.studio` /
+- [x] Update page title, meta description, and any brand strings to Benefit Hunter.
+- [x] Replace `hunter.yrka.io` and yrka funnel links with `benefits.jami.studio` /
       `www.jami.studio` where user-facing.
-- [ ] Update `apps/hunter/README.md` for the new repo/deploy context.
+- [x] Update `apps/hunter/README.md` for the new repo/deploy context.
 
 Exit criteria:
 
-- [ ] No user-facing yrka references remain; build still succeeds.
+- [x] No user-facing yrka references remain; build still succeeds.
 
 Suggested verification:
 
@@ -191,18 +193,18 @@ Goal: The durable doc set lives at `docs/` with retired plans in `_legacy`.
 
 Depends on:
 
-- [ ] Phase 1 docs authored.
+- [x] Phase 1 docs authored.
 
 Implementation tasks:
 
-- [ ] Copy the Phase 1 doc set into `docs/`.
-- [ ] Place the two `2026-05-25` yrka plans in `docs/_legacy/roadmaps/`.
-- [ ] Place `monetization.md` and other carried research in `docs/reference/`.
-- [ ] Ensure `docs/README.md` links resolve.
+- [x] Copy the Phase 1 doc set into `docs/`.
+- [x] Place the two `2026-05-25` yrka plans in `docs/_legacy/roadmaps/`.
+- [x] Place `monetization.md` and other carried research in `docs/reference/`.
+- [x] Ensure `docs/README.md` links resolve.
 
 Exit criteria:
 
-- [ ] `docs/` index and links are correct; no dead links.
+- [x] `docs/` index and links are correct; no dead links.
 
 ## Workstream 5: Git And GitHub
 
@@ -210,7 +212,7 @@ Goal: Initialize the single public repo and push a clean first commit.
 
 Depends on:
 
-- [ ] Workstreams 1–4.
+- [x] Workstreams 1–4.
 
 Repo guidance:
 
@@ -218,14 +220,14 @@ Repo guidance:
 
 Implementation tasks:
 
-- [ ] `git init` at the repo root; set default branch.
-- [ ] Stage and review; confirm no `_ops/` or `.env*` (except examples) is staged.
-- [ ] Create `studio-jami/benefit-hunter` (public) and set the remote.
-- [ ] Commit and push the baseline.
+- [x] `git init` at the repo root; set default branch.
+- [x] Stage and review; confirm no `_ops/` or `.env*` (except examples) is staged.
+- [x] Create `studio-jami/benefit-hunter` (public) and set the remote.
+- [x] Commit and push the baseline.
 
 Exit criteria:
 
-- [ ] Public repo exists with a clean baseline and no secret in history.
+- [x] Public repo exists with a clean baseline and no secret in history.
 
 Suggested verification:
 
@@ -239,20 +241,20 @@ Goal: `benefits.jami.studio` serves the app from the Jami Studio Vercel team.
 
 Depends on:
 
-- [ ] Workstream 5.
+- [x] Workstream 5.
 
 Implementation tasks:
 
-- [ ] Import `studio-jami/benefit-hunter` into the Jami Studio Vercel team.
-- [ ] Set Root Directory `apps/hunter`, framework Vite, build `npm run build`,
+- [x] Import `studio-jami/benefit-hunter` into the Jami Studio Vercel team.
+- [x] Set Root Directory `apps/hunter`, framework Vite, build `npm run build`,
       output `dist`.
-- [ ] Add `benefits.jami.studio` as a custom domain; set the Cloudflare DNS record.
-- [ ] Do not add Supabase envs (sync stays off).
-- [ ] Add a redirect from any temporary preview host to the canonical domain.
+- [x] Add `benefits.jami.studio` as a custom domain; set the Cloudflare DNS record.
+- [x] Do not add Supabase envs (sync stays off).
+- [x] Add a redirect from any temporary preview host to the canonical domain.
 
 Exit criteria:
 
-- [ ] `https://benefits.jami.studio` serves the rebranded app over HTTPS.
+- [x] `https://benefits.jami.studio` serves the rebranded app over HTTPS.
 
 Suggested verification:
 
@@ -261,11 +263,11 @@ Suggested verification:
 
 ## Final Verification And Closeout
 
-- [ ] Build passes locally and on Vercel.
-- [ ] No secret or `_ops/` content in the repo or history.
-- [ ] Rebrand complete; domain live.
-- [ ] Docs placed; retired plans in `_legacy`.
-- [ ] This roadmap's checkboxes updated truthfully; retire to
+- [x] Build passes locally and on Vercel.
+- [x] No secret or `_ops/` content in the repo or history.
+- [x] Rebrand complete; domain live.
+- [x] Docs placed; retired plans in `_legacy`.
+- [x] This roadmap's checkboxes updated truthfully; retire to
       `docs/_legacy/roadmaps/` when Phase 2 is complete.
 
 ## Acceptance Criteria
