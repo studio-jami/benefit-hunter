@@ -39,13 +39,13 @@ function AwardRow({ award }) {
   );
 }
 
-// Real-dollars-by-stack proof view. Confirmed vs unverified-claimed rendered
-// separately; totals reconcile against realAwards.js; freshness = the dated
-// active-credits source.
+// Real-dollars-by-stack proof view. Confirmed awards grouped by stack lane;
+// totals reconcile against realAwards.js; freshness = the dated active-credits
+// source. Unverified-claimed items are tracked in the data model for internal
+// review only and are never rendered here.
 export function ProofView() {
   const totals = useMemo(() => awardTotals(), []);
   const official = REAL_AWARDS.filter((a) => a.verificationStatus === "official");
-  const unverified = REAL_AWARDS.filter((a) => a.verificationStatus === "unverified-claimed");
   const byLane = useMemo(() => groupAwardsByLane(official), [official]);
 
   return (
@@ -104,26 +104,8 @@ export function ProofView() {
         );
       })}
 
-      {/* Unverified corral */}
-      {unverified.length > 0 && (
-        <div>
-          <div style={{ display: "flex", alignItems: "baseline", gap: 10, marginBottom: 6 }}>
-            <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", color: "var(--wait)" }}>
-              Unverified — claimed
-            </span>
-            {totals.unverifiedTotal > 0 && (
-              <span style={{ marginLeft: "auto", fontSize: 11, color: "var(--wait)", fontFamily: "monospace" }}>{fmt(totals.unverifiedTotal)}</span>
-            )}
-          </div>
-          <div style={{ fontSize: 9, color: "var(--text-dim2)", marginBottom: 8, lineHeight: 1.6, maxWidth: 680 }}>
-            Previously tracked or claimed, but not confirmed in the latest verification pass.
-            Kept for honesty — never counted as confirmed live value, never silently dropped.
-          </div>
-          <div style={{ border: "1px dashed var(--line)", borderRadius: 4 }}>
-            {unverified.map((a) => <AwardRow key={a.vendor + a.value.label} award={a} />)}
-          </div>
-        </div>
-      )}
+      {/* Unverified-claimed items are tracked internally in realAwards.js but
+          intentionally not rendered publicly — see the data-and-truth-model doc. */}
 
       <div style={{ fontSize: 9, color: "var(--text-dim3)", lineHeight: 1.7 }}>
         Notes: {official.filter(a => a.notes).length} awards carry sourcing notes in the public artifact

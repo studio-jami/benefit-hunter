@@ -70,7 +70,7 @@ export function ProgramCard({ program, status, onStatusChange, profileMatch, onV
           onError={(e) => { e.currentTarget.style.display = "none"; }}
           style={{
             position:"absolute", top:12, right:12,
-            width:18, height:18, borderRadius:3,
+            width:28, height:28, borderRadius:4,
             opacity:0.45, filter:"saturate(0.7)",
             pointerEvents:"none",
           }}
@@ -78,7 +78,7 @@ export function ProgramCard({ program, status, onStatusChange, profileMatch, onV
       )}
 
       {/* ROW 1 — Identity: Tier · Lane · Vendor (right side reserved for favicon) */}
-      <div style={{ display:"flex", flexWrap:"wrap", gap:5, alignItems:"center", paddingRight: vendorDomain ? 26 : 0 }}>
+      <div style={{ display:"flex", flexWrap:"wrap", gap:5, alignItems:"center", paddingRight: vendorDomain ? 36 : 0 }}>
         <Badge
           label={"T" + program.tier + " " + (program.tier===1?"FREE":"DISC")}
           tone={program.tier===1 ? "accent" : null}
