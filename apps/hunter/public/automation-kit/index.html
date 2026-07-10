@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Benefits Registry Auto-Updater — Self-Serve Kit</title>
+<meta name="description" content="A self-serve Google Apps Script kit that keeps your own benefits tracking Sheet up to date automatically, using your own Gmail and Gemini API key." />
+<style>
+  :root {
+    color-scheme: dark;
+    --bg: #07070a;
+    --surface: #0f0e0e;
+    --line: #1e1e1e;
+    --line-soft: #161616;
+    --text: #e8e6e1;
+    --text-dim: #9a978f;
+    --text-dim2: #6f6c66;
+    --accent: oklch(0.78 0.16 75);
+    --neutral-action: oklch(0.75 0 0);
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    line-height: 1.6; padding: 32px 20px 64px;
+  }
+  main { max-width: 760px; margin: 0 auto; }
+  h1 { font-size: 20px; margin: 0 0 6px; }
+  h2 { font-size: 13px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-dim); margin: 36px 0 12px; border-bottom: 1px solid var(--line-soft); padding-bottom: 6px; }
+  p, li { font-size: 13px; color: var(--text-dim); }
+  a { color: var(--accent); }
+  .tag { display: inline-block; font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-dim2); border: 1px solid var(--line); border-radius: 3px; padding: 2px 8px; margin-bottom: 18px; }
+  .files { list-style: none; margin: 0; padding: 0; border: 1px solid var(--line); border-radius: 4px; overflow: hidden; }
+  .files li { display: flex; justify-content: space-between; gap: 12px; padding: 10px 14px; border-bottom: 1px solid var(--line-soft); font-size: 12px; }
+  .files li:last-child { border-bottom: none; }
+  .files a { text-decoration: none; font-weight: 600; }
+  .files span { color: var(--text-dim2); font-size: 11px; }
+  .files li:nth-child(odd) { background: var(--surface); }
+  ol { padding-left: 20px; }
+  ol li { margin-bottom: 8px; }
+  code { background: var(--surface); border: 1px solid var(--line); border-radius: 3px; padding: 1px 5px; font-size: 12px; }
+  .btn { display: inline-block; margin-top: 4px; background: var(--neutral-action); color: #080807; font-weight: 700; text-decoration: none; padding: 8px 16px; border-radius: 3px; font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; }
+  footer { margin-top: 48px; font-size: 11px; color: var(--text-dim2); }
+  footer a { color: var(--text-dim); }
+</style>
+</head>
+<body>
+<main>
+  <span class="tag">Optional add-on · self-serve</span>
+  <h1>Benefits Registry Auto-Updater</h1>
+  <p>
+    A small Google Apps Script that reads your own Gmail for startup benefit/credit
+    emails, extracts structured updates with Gemini (your own free API key), and keeps
+    a <code>Registry</code> tab in your own Google Sheet up to date automatically —
+    matched by program name, idempotent, with a full audit log.
+  </p>
+  <p>
+    <strong>Runs entirely inside your Google account.</strong> The only outbound call
+    this script makes is to Google's Gemini API, using an API key you generate and
+    control. Nothing is sent to Jami Studio or any third party — we never see your
+    email, your Sheet, or your key.
+  </p>
+  <a class="btn" href="https://github.com/studio-jami/benefit-hunter/blob/main/docs/product/automation-kit-guide.md" target="_blank" rel="noopener noreferrer">Full setup guide ↗</a>
+
+  <h2>Files in this kit</h2>
+  <ul class="files">
+    <li><a href="./appsscript.json">appsscript.json</a><span>manifest: time zone, OAuth scopes</span></li>
+    <li><a href="./Code.gs">Code.gs</a><span>config, entrypoints, trigger installer, main sync loop, Sheet menu</span></li>
+    <li><a href="./GeminiClient.gs">GeminiClient.gs</a><span>Gemini API call + extraction prompt</span></li>
+    <li><a href="./SheetManager.gs">SheetManager.gs</a><span>Sheet I/O: upsert by program name, typed columns</span></li>
+    <li><a href="./GmailProcessor.gs">GmailProcessor.gs</a><span>email → Gemini → apply loop</span></li>
+    <li><a href="./Logger.gs">Logger.gs</a><span>error logging helper</span></li>
+    <li><a href="./DevTools.gs">DevTools.gs</a><span>manual debugging helpers</span></li>
+    <li><a href="./registry.seed.example.csv">registry.seed.example.csv</a><span>structural example only — not real data</span></li>
+    <li><a href="./README.md">README.md</a><span>quick-start + privacy + uninstall</span></li>
+  </ul>
+
+  <h2>Quick start</h2>
+  <ol>
+    <li>Create (or open) a Google Sheet. Add a tab named <code>Registry</code> (or change <code>CONFIG.REGISTRY_TAB</code> in <code>Code.gs</code>).</li>
+    <li>In the Sheet: <strong>Extensions &gt; Apps Script</strong>. Delete the default code.</li>
+    <li>Create each file listed above and paste in the matching content (open <code>appsscript.json</code> via the gear icon &gt; "Show manifest file").</li>
+    <li><strong>Project Settings (gear) &gt; Script Properties</strong>: add <code>GEMINI_API_KEY</code> with a free key from <a href="https://aistudio.google.com/app/apikey" target="_blank" rel="noopener noreferrer">aistudio.google.com/app/apikey</a>.</li>
+    <li>In Gmail, create a label <code>benefit-programs</code> and apply it to relevant emails (or change <code>CONFIG.GMAIL_SEARCH_QUERY</code>).</li>
+    <li>Back in the Apps Script editor, run <code>installTriggers</code> once and authorize the requested Gmail + Sheets permissions.</li>
+    <li>Optional: import <code>registry.seed.example.csv</code> into your Registry tab to see the expected shape.</li>
+    <li>Run <code>testSyncNow</code> (or use the "Registry Sync" menu in the Sheet) to verify end to end.</li>
+  </ol>
+
+  <footer>
+    <a href="/">← Back to Benefit Hunter</a> ·
+    <a href="https://github.com/studio-jami/benefit-hunter/blob/main/docs/product/automation-kit-guide.md" target="_blank" rel="noopener noreferrer">Full guide on GitHub ↗</a>
+  </footer>
+</main>
+</body>
+</html>
