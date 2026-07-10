@@ -1,5 +1,0 @@
-{
-  "installCommand": "npm --prefix apps/hunter install",
-  "buildCommand": "npm --prefix apps/hunter run build",
-  "outputDirectory": "apps/hunter/dist"
-}
