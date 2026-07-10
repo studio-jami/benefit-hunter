@@ -43,7 +43,8 @@ programs, real dollars, real agent workflows) and invites users deeper.
 - Local-storage persistence only. No account, no auth, no server database at launch.
 - Catalog, profile matching, readiness, guided flow, example library, and the
   real-dollars-by-stack view all run client-side from versioned data artifacts.
-- The self-serve automation kit ships as a documented add-on in a later phase.
+- The self-serve automation kit ships as a documented, optional add-on — see
+  [automation-kit-guide.md](./automation-kit-guide.md).
 
 ## Scope: explicitly on hold
 

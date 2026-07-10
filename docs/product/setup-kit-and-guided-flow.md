@@ -117,5 +117,5 @@ unverified awards are shown in a clearly separated group, never silently dropped
 
 - No auto-submission, no headless form filling, no impersonation.
 - No storage of a user's real application answers on a server (local storage only).
-- The self-serve automation kit is a separate add-on (Phase 4), not part of the
-  guided flow.
+- The self-serve automation kit is a separate add-on ([guide](./automation-kit-guide.md)),
+  not part of the guided flow.

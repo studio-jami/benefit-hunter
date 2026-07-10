@@ -18,6 +18,7 @@ active build sequence.
 | --- | --- | --- |
 | Product | [product/vision-and-scope.md](./product/vision-and-scope.md) | What Benefit Hunter is, who it serves, free-now / paid-later posture, funnel goal. |
 | Product | [product/setup-kit-and-guided-flow.md](./product/setup-kit-and-guided-flow.md) | The guided umbrella-first application flow and the agent-pointable example library. |
+| Product | [product/automation-kit-guide.md](./product/automation-kit-guide.md) | Self-serve setup guide for the optional Google Apps Script registry-sync add-on. |
 | Architecture | [architecture/repo-and-monorepo.md](./architecture/repo-and-monorepo.md) | Monorepo shape, app naming, what is public vs private, reorg from the admin tree. |
 | Architecture | [architecture/data-and-truth-model.md](./architecture/data-and-truth-model.md) | Catalog schema, `active-credits` as source of truth, the unverified-claimed corral, the real-dollars-by-stack view. |
 | Operations | [operations/deployment-and-domains.md](./operations/deployment-and-domains.md) | GitHub `studio-jami`, Vercel Jami Studio team, `benefits.jami.studio`, build config, redirects. |
@@ -31,7 +32,7 @@ acceptance criteria are met.
 
 1. **Phase 2 — Stand up & launch** ([retired roadmap](./_legacy/roadmaps/2026-07-10-phase-2-standup-and-launch.md), complete 2026-07-10): cut the public repo, dedupe/rebrand the Hunter app, ship the current app live at `benefits.jami.studio`.
 2. **Phase 3 — Fold in the offerings** ([retired roadmap](./_legacy/roadmaps/2026-07-10-phase-3-offerings-fold-in.md), complete 2026-07-10): setup kit, guided umbrella-first flow, templatized example library, real-dollars-by-stack view.
-3. **Phase 4 — Automation kit v1.1** ([roadmap](./roadmaps/2026-07-10-phase-4-automation-kit-v1_1.md)): the self-serve Google Apps Script registry-sync add-on. Non-blocking; ships after core.
+3. **Phase 4 — Automation kit v1.1** ([retired roadmap](./_legacy/roadmaps/2026-07-10-phase-4-automation-kit-v1_1.md), complete 2026-07-10): the self-serve Google Apps Script registry-sync add-on. Non-blocking; ships after core.
 
 (Phase 0 alignment and Phase 1 doc authoring are this doc set itself.)
 

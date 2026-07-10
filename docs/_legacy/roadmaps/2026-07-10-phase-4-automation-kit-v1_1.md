@@ -1,7 +1,7 @@
 # Benefit Hunter Automation Kit v1.1 Implementation Plan
 
 Date: 2026-07-10
-Status: [ ] Planned (non-blocking add-on)
+Status: [x] Complete (2026-07-10)
 Source reports: `docs/product/setup-kit-and-guided-flow.md`, `_ops/programs/automation/benefits-registry-sync/README.md`
 Owner: Jami Studio
 Surface: `apps/hunter` docs/kit surface, packaged Apps Script sources, self-serve setup instructions
@@ -86,7 +86,7 @@ Goal: A standalone, secret-free, user-configurable copy of the Apps Script proje
 
 Depends on:
 
-- [ ] Phase 2 baseline live (so the add-on has a home).
+- [x] Phase 2 baseline live (so the add-on has a home).
 
 Primary areas:
 
@@ -95,17 +95,28 @@ Primary areas:
 
 Implementation tasks:
 
-- [ ] Copy the `.gs` sources into the public kit and remove all Jami-specific values.
-- [ ] Replace the hardcoded target Sheet ID and any `VERTEX_SA_KEY`/service-account
+- [x] Copy the `.gs` sources into the public kit and remove all Jami-specific values.
+- [x] Replace the hardcoded target Sheet ID and any `VERTEX_SA_KEY`/service-account
       path with documented placeholders and a single config block.
-- [ ] Rework the prompt/schema assumptions into a documented, user-editable schema
+      (Went further: the kit is a container-bound script using
+      `SpreadsheetApp.getActive()`, so there is no Sheet ID to configure at all;
+      Vertex AI + service-account JWT auth was replaced with the plain Gemini API
+      key flow the roadmap itself specifies — "the user's own Sheet and Gemini
+      key" — via `GEMINI_API_KEY` in Script Properties.)
+- [x] Rework the prompt/schema assumptions into a documented, user-editable schema
       (generalize the 11-column canonical shape; remove Fin-pack-only assumptions or
-      make them optional).
-- [ ] Provide a generic seed CSV structure, not Jami's real registry data.
+      make them optional). (Kept the 11-column shape as a documented recommended
+      default; removed all Jami migration history, hardcoded referral-code examples,
+      and Fin-pack-specific language — multi-vendor packs are now just "add it as an
+      ordinary row", no special-cased vendor.)
+- [x] Provide a generic seed CSV structure, not Jami's real registry data.
+      (`registry.seed.example.csv`: two structural example rows, all real-data
+      columns blank.)
 
 Exit criteria:
 
-- [ ] The kit contains no real keys, Sheet IDs, SA paths, or Jami-only requirements.
+- [x] The kit contains no real keys, Sheet IDs, SA paths, or Jami-only requirements.
+      Verified by grep (see Workstream 4).
 
 Suggested verification:
 
@@ -117,21 +128,21 @@ Goal: A user can install the kit in their own Google account end to end.
 
 Depends on:
 
-- [ ] Workstream 1.
+- [x] Workstream 1.
 
 Implementation tasks:
 
-- [ ] Write a step-by-step guide: create/copy the Sheet, add each script file, set the
+- [x] Write a step-by-step guide: create/copy the Sheet, add each script file, set the
       script property for the user's own Gemini/Vertex key, authorize Gmail+Sheets,
-      run the trigger installer, and seed.
-- [ ] Document the schedule and how to change it, the idempotency model, and how to
+      run the trigger installer, and seed. (`docs/product/automation-kit-guide.md`)
+- [x] Document the schedule and how to change it, the idempotency model, and how to
       re-apply canonical formatting.
-- [ ] Include a troubleshooting section and a clear privacy statement (runs entirely in
+- [x] Include a troubleshooting section and a clear privacy statement (runs entirely in
       the user's account; Jami Studio receives nothing).
 
 Exit criteria:
 
-- [ ] A new user can follow the guide without access to any Jami Studio resource.
+- [x] A new user can follow the guide without access to any Jami Studio resource.
 
 ## Workstream 3: Presentation / Entry Point
 
@@ -139,25 +150,33 @@ Goal: Decide and implement how the add-on is offered.
 
 Depends on:
 
-- [ ] Open decision on presentation (see below).
+- [x] Open decision on presentation (see below).
 
 Implementation tasks:
 
-- [ ] Implement the chosen surface (e.g. a dedicated kit page or downloadable bundle
-      plus an in-app callout framing it as optional).
-- [ ] Link it clearly as an add-on, separate from the core flow.
+- [x] Implement the chosen surface (e.g. a dedicated kit page or downloadable bundle
+      plus an in-app callout framing it as optional). (Decided: the kit ships as a
+      downloadable bundle under `apps/hunter/public/automation-kit/` — directly
+      fetchable from the live site — plus the durable guide doc, viewable on GitHub.
+      No new router/page needed for a single-page app.)
+- [x] Link it clearly as an add-on, separate from the core flow. (App footer link:
+      "Automation Kit (optional) ↗", opens the guide in a new tab.)
 
 Exit criteria:
 
-- [ ] The add-on is discoverable but clearly optional and non-blocking.
+- [x] The add-on is discoverable but clearly optional and non-blocking.
 
 ## Workstream 4: Verification And Closeout
 
 Implementation tasks:
 
-- [ ] Confirm no secret/Jami-only value in the shipped kit.
-- [ ] Confirm the guide is followable standalone.
-- [ ] Update this roadmap's checkboxes; retire to `docs/_legacy/roadmaps/` when done.
+- [x] Confirm no secret/Jami-only value in the shipped kit. (Grepped the kit +
+      guide for `yrka`, the real Sheet ID, `VERTEX_SA_KEY`, the SA key path, and
+      `Partner Registry` — zero matches. Remaining "Jami Studio"/"jami.studio"
+      hits are only legitimate product/repo attribution and the privacy statement.)
+- [x] Confirm the guide is followable standalone. (Guide is self-contained: no
+      step references a Jami Studio credential, Sheet, or account.)
+- [x] Update this roadmap's checkboxes; retire to `docs/_legacy/roadmaps/` when done.
 
 ## Acceptance Criteria
 
@@ -167,11 +186,14 @@ Implementation tasks:
 
 ## Open Decisions
 
-- [!] **Presentation format** — how to best offer/present the kit (dedicated page,
-      downloadable bundle, GitHub-linked folder, or in-app guide). Deferred; decide
-      before Workstream 3.
-- [!] **Schema generality** — how much of the Jami-specific 11-column registry schema
-      to keep as a recommended default vs fully generalize.
+- [x] **Presentation format** — downloadable bundle at
+      `apps/hunter/public/automation-kit/` (served live at
+      `benefits.jami.studio/automation-kit/`) plus the durable guide at
+      `docs/product/automation-kit-guide.md`, linked from an in-app footer callout.
+- [x] **Schema generality** — kept the 11-column shape as a documented recommended
+      default (clearly editable in `SheetManager.gs` + the Gemini prompt), rather
+      than fully abstracting it away; this matches the roadmap's own guidance to
+      generalize assumptions while keeping a working default.
 
 ## Implementation Order
 

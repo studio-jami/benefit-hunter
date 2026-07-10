@@ -764,7 +764,17 @@ export default function App() {
         fontSize:8, color:"var(--line)", letterSpacing:"0.08em",
       }}>
         <span>BENEFIT HUNTER v5 // {PROGRAMS.length} BENEFITS // {VENDOR_COUNT} VENDORS</span>
-        <span>cash-like ${(totalCashLikeT1/1000).toFixed(0)}k · counted ${(totalCountedT1/1000).toFixed(0)}k</span>
+        <span style={{ display:"flex", gap:14, alignItems:"center" }}>
+          <a
+            href="https://github.com/studio-jami/benefit-hunter/blob/main/docs/product/automation-kit-guide.md"
+            target="_blank" rel="noopener noreferrer"
+            style={{ color:"var(--line)", textDecoration:"none" }}
+            title="Optional add-on: auto-update your own benefits tracking Sheet from Gmail using your own Gemini key. Runs entirely in your Google account."
+          >
+            Automation Kit (optional) ↗
+          </a>
+          <span>cash-like ${(totalCashLikeT1/1000).toFixed(0)}k · counted ${(totalCountedT1/1000).toFixed(0)}k</span>
+        </span>
       </div>
 
      </div>{/* /.shell */}
