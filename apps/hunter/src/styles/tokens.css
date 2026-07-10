@@ -13,6 +13,7 @@
 :root {
   /* === Semantic — theme-independent === */
   --accent: oklch(0.78 0.16 75);
+  --neutral-action: oklch(0.75 0 0);
   --gold:   oklch(0.83 0.17 85);
   --match:  oklch(0.78 0.18 150);
   --ok:     oklch(0.74 0.16 148);
