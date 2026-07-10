@@ -99,3 +99,7 @@ When the plan is complete:
 - Promote any permanent rules to durable docs.
 - Keep changelog fragments as the release source of truth.
 - Keep active docs pointed at current operating guidance.
+- After a `git mv`, confirm the file is actually gone from the old path before
+  committing: an editor with the file open can resave the buffer and resurrect
+  it at the old location (happened retiring both the Phase 2 and Phase 3
+  plans). If a duplicate appears, hash-compare and delete the old-path copy.

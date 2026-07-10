@@ -95,6 +95,29 @@ Do not carry redemption links, coupon/referral codes, invoice IDs, or account
 identifiers into this public artifact. See
 [security/privacy-and-secrets.md](../security/privacy-and-secrets.md).
 
+## Valuing plan awards (no guessing)
+
+Dollar-credit awards use the value stated in `active-credits`. Plan/license
+awards ("1 yr Business plan", "6 mo free") are valued by these rules,
+established 2026-07-10:
+
+- Use the vendor's **public list price**, verified on the vendor's live pricing
+  page on the artifact's source date, at the smallest honest basis (1 seat /
+  1 member / 1 builder). Cite the page and date in the record's `notes`.
+- If the plan is **custom-priced** (no public number — e.g. Amplitude Growth),
+  set `estimate: null` and exclude it from totals. Never estimate.
+- **Vendor-stated marketing values** (e.g. Mixpanel's "$145k" program figure)
+  may be quoted in `notes` but never counted in totals.
+- Discounts are valued as stated savings; if annualized, say so in `notes`.
+- When only a conservative **floor** is computable (e.g. Auth0's 100k-MAU tier
+  is custom but the lowest published tier is not), use the floor and label it.
+
+These invariants are locked by the focused tests in
+`apps/hunter/src/test/realAwards.test.js` (totals reconcile, statuses valid,
+lanes known, no links/codes/PII, uncounted awards carry notes) and
+`apps/hunter/src/test/examples.test.js` (placeholders resolve to profile keys,
+no identity/referral-code leakage).
+
 ## Drift control
 
 - The public artifacts (catalog, real awards) are the shipped truth. Do not duplicate

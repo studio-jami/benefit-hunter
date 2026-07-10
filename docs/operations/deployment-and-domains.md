@@ -66,6 +66,9 @@ the funnel without a decision.
 2. Vercel builds `apps/hunter` and deploys to `benefits.jami.studio`.
 3. Data changes (catalog, real-awards artifact) ship as normal commits; there is no
    separate data pipeline at launch.
+4. To verify a deploy landed, request the domain with a cache-busting query
+   (e.g. `?v=<anything>`) — the bare URL is often served from cache and can
+   show the previous build for a while.
 
 ## Future (parked) infrastructure
 
