@@ -19,6 +19,7 @@
     "vite": "^7.1.12"
   },
   "devDependencies": {
+    "archiver": "^8.0.0",
     "vitest": "^4.1.10"
   }
 }
