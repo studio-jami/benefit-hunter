@@ -4,7 +4,9 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
+    "predev": "node scripts/zip-starter-repo.mjs",
     "dev": "vite",
+    "prebuild": "node scripts/zip-starter-repo.mjs",
     "build": "vite build",
     "preview": "vite preview",
     "test": "vitest run"
@@ -19,7 +21,7 @@
     "vite": "^7.1.12"
   },
   "devDependencies": {
-    "archiver": "^8.0.0",
+    "archiver": "^7.0.1",
     "vitest": "^4.1.10"
   }
 }
