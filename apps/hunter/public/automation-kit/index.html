@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Benefits Registry Auto-Updater — Self-Serve Kit</title>
-<meta name="description" content="A self-serve Google Apps Script kit that keeps your own benefits tracking Sheet up to date automatically, using your own Gmail and Gemini API key." />
+<title>Benefits Tracker — Starter Repo</title>
+<meta name="description" content="A copy-paste starter repo for tracking your own startup credits, free tiers, and partner discounts — with an optional self-serve Gmail-to-Sheet automation kit inside." />
 <style>
   :root {
     color-scheme: dark;
@@ -55,22 +55,23 @@
     <span>·</span>
     <a href="https://github.com/studio-jami/benefit-hunter/blob/main/docs/product/automation-kit-guide.md" target="_blank" rel="noopener noreferrer">Full guide on GitHub ↗</a>
   </nav>
-  <span class="tag">Optional add-on · self-serve</span>
-  <h1>Benefits Registry Auto-Updater</h1>
+  <span class="tag">Starter repo · self-serve</span>
+  <h1>Benefits Tracker — Starter Repo</h1>
   <p>
-    A small Google Apps Script that reads your own Gmail for startup benefit/credit
-    emails, extracts structured updates with Gemini (your own free API key), and keeps
-    a <code>Registry</code> tab in your own Google Sheet up to date automatically —
-    matched by program name, idempotent, with a full audit log.
+    A copy-paste folder structure for tracking startup credits, free tiers, and partner
+    discounts for your own company — the same tracker Jami Studio uses internally.
+    Includes an optional Google Apps Script that reads your own Gmail for benefit/credit
+    emails, extracts structured updates with Gemini (your own free API key), and keeps a
+    <code>Registry</code> tab in your own Sheet up to date automatically.
   </p>
   <p>
-    <strong>Runs entirely inside your Google account.</strong> The only outbound call
-    this script makes is to Google's Gemini API, using an API key you generate and
+    <strong>The script runs entirely inside your Google account.</strong> The only
+    outbound call it makes is to Google's Gemini API, using an API key you generate and
     control. Nothing is sent to Jami Studio or any third party — we never see your
-    email, your Sheet, or your key.
+    email, your Sheet, or your key. Skip it entirely if you'd rather track by hand.
   </p>
   <p style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
-    <a class="btn" href="./starter-repo.zip" download>Download kit (.zip) ⤓</a>
+    <a class="btn" href="./starter-repo.zip" download>Download starter repo (.zip) ⤓</a>
     <a class="btn btn-outline" href="https://github.com/studio-jami/benefit-hunter/blob/main/docs/product/automation-kit-guide.md" target="_blank" rel="noopener noreferrer">Full setup guide ↗</a>
   </p>
 
@@ -86,17 +87,6 @@
     <li>Optional: import <code>registry.seed.example.csv</code> (same folder) into your Registry tab to see the expected shape.</li>
     <li>Run <code>testSyncNow</code> (or use the "Registry Sync" menu in the Sheet) to verify end to end.</li>
   </ol>
-
-  <h2>Starter repo — track your own benefits</h2>
-  <p style="margin-top:-6px;">
-    A full folder structure you copy into your own new repo — the same tracker Jami
-    Studio uses internally. Real, sanitized examples throughout (adapt them, or point an
-    agent at them — not fake filler to copy verbatim), plus this Apps Script kit as an
-    optional add-on.
-  </p>
-  <p>
-    <a class="btn" href="./starter-repo.zip" download>Download starter repo (.zip) ⤓</a>
-  </p>
 
   <footer>
     <a href="/">← Back to Benefit Hunter</a> ·
